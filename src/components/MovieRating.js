@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { getVoteColor } from "../utils/movie";
 
-const MovieRating = ({ rating, children }) => (
+const MovieRating = ({ rating, label }) => (
   <>
-    {children ? (
+    {label ? (
       <p>
-        {children} :
+        {label} :
         <StyledVote voteColor={getVoteColor(rating)}> {rating}</StyledVote>
       </p>
     ) : (
