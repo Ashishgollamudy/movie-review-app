@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import MovieDetails from "./components/MovieDetails";
+import MovieDetailsContainer from "./components/MovieDetailsContainer";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -10,7 +10,7 @@ root.render(
     <Router>
       <Routes>
         <Route path="/" element={<App />}></Route>
-        <Route path="/movie-details/:id" element={<MovieDetails />} />
+        <Route path="/movie-details/:id" element={<MovieDetailsContainer />} />
       </Routes>
     </Router>
   </React.StrictMode>

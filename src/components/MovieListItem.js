@@ -4,29 +4,27 @@ import { Link } from "react-router-dom";
 import { IMG_API } from "../constants/url";
 import MovieRating from "./MovieRating";
 
-const Movie = ({ movie }) => {
-  return (
-    <StyledMovie>
-      <StyledLink to={`/movie-details/${movie.id}`} state={{ movie }}>
-        <StyledPoster
-          src={`${IMG_API}${movie.poster_path}`}
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.src = "/assets/no-poster.png";
-          }}
-        />
-        <StyledMovieInfo>
-          <p>{movie.title}</p>
-          <MovieRating rating={movie.vote_average} />
-        </StyledMovieInfo>
-        <StyledMovieOverView>
-          <h2>Overview:</h2>
-          <p>{movie.overview}</p>
-        </StyledMovieOverView>
-      </StyledLink>
-    </StyledMovie>
-  );
-};
+const MovieListItem = ({ movie }) => (
+  <StyledMovie>
+    <StyledLink to={`/movie-details/${movie.id}`} state={{ movie }}>
+      <StyledPoster
+        src={`${IMG_API}${movie.poster_path}`}
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.src = "/assets/no-poster.png";
+        }}
+      />
+      <StyledMovieInfo>
+        <p>{movie.title}</p>
+        <MovieRating rating={movie.vote_average} />
+      </StyledMovieInfo>
+      <StyledMovieOverView>
+        <h2>Overview:</h2>
+        <p>{movie.overview}</p>
+      </StyledMovieOverView>
+    </StyledLink>
+  </StyledMovie>
+);
 
 const StyledMovieOverView = styled.div`
   position: absolute;
@@ -40,6 +38,10 @@ const StyledMovieOverView = styled.div`
   transition: transform 0.3s ease-in-out;
   max-height: 100%;
   overflow: auto;
+
+  @media only screen and (max-width: 400px) {
+    display: none;
+  }
 `;
 
 const StyledMovie = styled.div`
@@ -84,4 +86,4 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
-export default Movie;
+export default MovieListItem;

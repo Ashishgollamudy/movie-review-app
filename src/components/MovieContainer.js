@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
-import Movie from "./Movie";
+import Movie from "./MovieListItem";
 import MovieSearch from "./MovieSearch";
 import { MOVIE_API } from "../constants/url";
 
 function MovieContainer() {
   const [moviesList, setMoviesList] = useState([]);
   const [isLoading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState("kalyan");
+  const [searchTerm, setSearchTerm] = useState("koi");
 
   const onSearchCallback = useCallback(() => {
     setLoading(true);
@@ -31,14 +31,14 @@ function MovieContainer() {
   }, [onSearchCallback]);
 
   function onSearchChange(value) {
-    if (value) {
+    if (value && value.trim().length > 0) {
       setSearchTerm(value);
     }
   }
 
   return (
     <>
-      <MovieSearch onSearch={onSearchChange} showSearch />
+      <MovieSearch onSearch={onSearchChange} showSearchProp />
       <StyledMovieListContainer>
         {isLoading ? (
           <div>Loading...</div>
